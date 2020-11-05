@@ -1,0 +1,259 @@
+$monospace-font: Menlo,
+Monaco,
+Consolas,
+'Courier New',
+monospace;
+$line-space: 16px;
+$baseTxtColor: #555;
+$titleBlue: #005bb7;
+$strongBlue: #2196f3;
+$codeColor: #c2185b;
+$codeBgColor: #fff4f4;
+$blockquoteBgColor: #f0fdff;
+
+@mixin headTitle($padb: 4px, $fontSize: 24px, $mtop: 36px) {
+  padding-bottom: $padb;
+  margin-top: $mtop;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  font-size: $fontSize;
+}
+
+@mixin headTextShadow {
+  text-shadow: rgba(68, 68, 68, .45) 2px 2px 2px;
+  color: $titleBlue;
+}
+
+@mixin blockquoteColor {
+  color: #8c8c8c;
+  border-left: 4px solid $strongBlue;
+  background-color: #f0fdff;
+}
+
+.markdown-body {
+  word-break: break-word;
+  line-height: 1.75;
+  font-weight: 400;
+  font-size: 14px;
+  overflow-x: hidden;
+  color: $baseTxtColor;
+
+  h1 {
+    @include headTitle(4px, 30px);
+    @include headTextShadow;
+  }
+
+  h2 {
+    @include headTitle(10px, 24px);
+    @include headTextShadow;
+    border-bottom: 1px solid #ececec;
+  }
+
+  h3 {
+    @include headTitle(0, 20px);
+    @include headTextShadow;
+  }
+
+  h4 {
+    @include headTitle(0, 16px);
+    @include headTextShadow;
+  }
+
+  h5 {
+    @include headTitle(0, 14px);
+    @include headTextShadow;
+  }
+
+  h6 {
+    @include headTitle(0, 12px, 6px);
+    @include headTextShadow;
+  }
+
+  p {
+    line-height: inherit;
+    margin-top: $line-space;
+    margin-bottom: $line-space;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  hr {
+    border-top: 1px solid #ddd;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    margin-top: 32px;
+    margin-bottom: 32px;
+  }
+
+  code {
+    font-family: $monospace-font;
+    word-break: break-word;
+    border-radius: 2px;
+    overflow-x: auto;
+    background-color: $codeBgColor;
+    color: $codeColor;
+    font-size: 0.87em;
+    padding: 0.065em 0.4em;
+  }
+
+  pre {
+    font-family: $monospace-font;
+    overflow: auto;
+    position: relative;
+    line-height: 1.75;
+
+    >code {
+      font-size: 12px;
+      padding: 16px 12px;
+      margin: 0;
+      word-break: normal;
+      display: block;
+      overflow-x: auto;
+      color: #333;
+      background: #f8f8f8;
+    }
+  }
+
+  a {
+    position: relative;
+    text-decoration: none;
+    color: #3da8f5;
+    border-bottom: 1px solid #bedcff;
+
+    &:hover {
+      color: #007fff;
+      border-bottom-color: #007fff;
+    }
+
+    &:active {
+      color: #007fff;
+    }
+
+    &::after {
+      position: absolute;
+      content: '';
+      top: 100%;
+      left: 0;
+      width: 100%;
+      opacity: 0;
+      border-bottom: 1px solid #bedcff;
+      transition: top 0.3s, opacity .3s;
+      transform: translate3d(0, 0, 0);
+    }
+
+    &:hover::after {
+      top: 0;
+      opacity: 1;
+      border-bottom-color: #007fff;
+    }
+  }
+
+  table {
+    display: inline-block !important;
+    font-size: 12px;
+    width: auto;
+    max-width: 100%;
+    overflow: auto;
+    border: solid 1px #f6f6f6;
+  }
+
+  thead {
+    background: #f6f6f6;
+    color: #000;
+    text-align: left;
+  }
+
+  tr:nth-child(2n) {
+    background-color: #fcfcfc;
+  }
+
+  th,
+  td {
+    padding: 12px 8px;
+    line-height: 24px;
+  }
+
+  td {
+    min-width: 120px;
+  }
+
+  blockquote {
+    @include blockquoteColor;
+    padding: 1px 20px;
+    margin: 22px 0;
+
+    &::after {
+      display: block;
+      content: '';
+    }
+
+    &>p {
+      margin: 10px 0;
+    }
+
+    &>b,
+    &>strong {
+      color: $strongBlue;
+    }
+  }
+
+  b,
+  strong {
+    color: $strongBlue;
+  }
+
+  i,
+  em {
+    color: #4fc3f7;
+  }
+
+  del {
+    color: #ccc;
+  }
+
+  ol,
+  ul {
+    padding-left: 28px;
+
+    li {
+      margin-bottom: 0;
+      list-style: inherit;
+
+      & .task-list-item {
+        list-style: none;
+
+        ul,
+        ol {
+          margin-top: 0;
+        }
+      }
+    }
+
+    ul,
+    ol {
+      margin-top: 4px;
+    }
+  }
+
+  ol li {
+    padding-left: 6px;
+  }
+
+
+  @media (max-width: 720px) {
+    h1 {
+      font-size: 24px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+
+    h3 {
+      font-size: 18px;
+    }
+  }
+}

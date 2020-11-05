@@ -1,0 +1,33 @@
+{
+  "name": "juejin-theme",
+  "version": "1.0.0",
+  "author": "",
+  "license": "ISC",
+  "description": "掘金 markdown 主题",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js",
+    "t": " & npx sass --watch ./juejin.scss:./static/juejin.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linxsbox/juejin-theme.git"
+  },
+  "bugs": {
+    "url": "https://github.com/linxsbox/juejin-theme/issues"
+  },
+  "homepage": "https://github.com/linxsbox/juejin-theme#readme",
+  "dependencies": {
+    "chokidar": "^3.4.3",
+    "ejs": "^3.1.5",
+    "koa": "^2.13.0",
+    "koa-router": "^10.0.0",
+    "koa-static": "^5.0.0",
+    "koa-views": "^6.3.1",
+    "node-fetch": "^2.6.1",
+    "remark": "^13.0.0",
+    "remark-html": "^13.0.1",
+    "sass": "^1.28.0",
+    "socket.io": "^2.3.0"
+  }
+}
