@@ -16,13 +16,12 @@ const app = new koa();
 const router = new koaRouter();
 
 let socketItem;
-async function run(file) {
-  // '6844904170709843975' '6865308620876808199'
-  const fetchData = await fetcthArticleData('6865308620876808199');
+async function run(file, articleId) {
+  const fetchData = await fetcthArticleData(articleId);
   const data = await parseMarkdown(fetchData);
   // console.log(data);
 
-  watchFile();
+  watchFile(file);
   koaServer(data);
 
   const server = http.createServer(app.callback());
@@ -32,7 +31,7 @@ async function run(file) {
   server.listen(3000, () => { console.log('http://localhost:3000'); });
 }
 
-function watchFile() {
+function watchFile(file) {
   // 启用子线程执行 scss 监听
   const execCmd = `npx sass --watch ./${file}:./static/juejin.css`;
   child_process.exec(execCmd);
@@ -97,4 +96,4 @@ async function parseMarkdown(fetchData) {
   });
 }
 
-run('cyanosis.scss');
+run('cyanosis.scss', '6865308620876808199');
