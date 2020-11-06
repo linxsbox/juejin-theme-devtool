@@ -7,7 +7,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node index.js",
-    "t": " & npx sass --watch ./juejin.scss:./static/juejin.css"
+    "cp": "node cp.js"
   },
   "repository": {
     "type": "git",
