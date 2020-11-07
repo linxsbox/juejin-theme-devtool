@@ -24,6 +24,7 @@
   text-shadow: rgba(68, 68, 68, 0.45) 2px 2px 2px;
   color: #005bb7;
   border-bottom: 1px solid #ececec;
+  transition: color 2s;
 }
 .markdown-body h3 {
   padding-bottom: 0;
@@ -65,6 +66,7 @@
   line-height: inherit;
   margin-top: 16px;
   margin-bottom: 16px;
+  text-shadow: rgba(175, 175, 175, 0.45) 2px 2px 1px;
 }
 .markdown-body img {
   max-width: 100%;
@@ -78,14 +80,14 @@
   margin-bottom: 32px;
 }
 .markdown-body code {
+  padding: 0.065em 0.4em;
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: 0.87em;
+  color: #c2185b;
   word-break: break-word;
-  border-radius: 2px;
   overflow-x: auto;
   background-color: #fff4f4;
-  color: #c2185b;
-  font-size: 0.87em;
-  padding: 0.065em 0.4em;
+  border-radius: 2px;
 }
 .markdown-body pre {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
@@ -94,13 +96,13 @@
   line-height: 1.75;
 }
 .markdown-body pre > code {
-  font-size: 12px;
+  display: block;
   padding: 16px 12px;
   margin: 0;
-  word-break: normal;
-  display: block;
-  overflow-x: auto;
+  font-size: 12px;
   color: #333;
+  word-break: normal;
+  overflow-x: auto;
   background: #f8f8f8;
 }
 .markdown-body a {
@@ -211,6 +213,35 @@
 }
 .markdown-body ol li {
   padding-left: 6px;
+}
+.markdown-body h1::selection,
+.markdown-body h2::selection,
+.markdown-body h3::selection,
+.markdown-body h4::selection,
+.markdown-body h5::selection,
+.markdown-body h6::selection {
+  color: #005bb7;
+}
+.markdown-body p::selection {
+  color: #c80000;
+}
+.markdown-body a::selection,
+.markdown-body b::selection,
+.markdown-body strong::selection,
+.markdown-body i::selection,
+.markdown-body em::selection,
+.markdown-body del::selection {
+  background-color: transparent;
+}
+.markdown-body code::selection {
+  background-color: #ffeaeb;
+}
+.markdown-body pre > code::selection {
+  background-color: rgba(160, 200, 255, 0.25);
+}
+.markdown-body ol ::selection,
+.markdown-body ul ::selection {
+  background-color: transparent;
 }
 @media (max-width: 720px) {
   .markdown-body h1 {

@@ -16,6 +16,8 @@ const app = new koa();
 const router = new koaRouter();
 
 let socketItem;
+const filePath = file => path.join(__dirname, `../${file}`);
+
 async function run(file, articleId) {
   const fetchData = await fetcthArticleData(articleId);
   const data = await parseMarkdown(fetchData);
@@ -42,15 +44,15 @@ function watchFile(file) {
   child_process.exec(execCmd);
 
   // 监听编译后的文件变化
-  const watcherFile = chokidar.watch(path.join(__dirname, './static/*.css'), {});
+  const watcherFile = chokidar.watch(filePath('static/*.css'), {});
   watcherFile.on('change', () => { app.emit('change'); });
 }
 
 function koaServer(data) {
   let changing = false;
   // 静态文件服务 & 模板服务
-  app.use(statics(path.join(__dirname, './static')));
-  app.use(views(path.join(__dirname, './views'), { map: { html: 'ejs' } }));
+  app.use(statics(filePath('static')));
+  app.use(views(filePath('views'), { map: { html: 'ejs' } }));
 
   // 路由
   router.get('/', async ctx => { await ctx.render('index', { data }); });

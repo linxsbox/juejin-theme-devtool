@@ -17,6 +17,7 @@ $blockquoteBgColor: #f0fdff;
   margin-bottom: 10px;
   line-height: 1.5;
   font-size: $fontSize;
+
 }
 
 @mixin headTextShadow {
@@ -47,6 +48,7 @@ $blockquoteBgColor: #f0fdff;
     @include headTitle(10px, 24px);
     @include headTextShadow;
     border-bottom: 1px solid #ececec;
+    transition: color 2s;
   }
 
   h3 {
@@ -73,6 +75,7 @@ $blockquoteBgColor: #f0fdff;
     line-height: inherit;
     margin-top: $line-space;
     margin-bottom: $line-space;
+    text-shadow: rgba(175, 175, 175, 0.45) 2px 2px 1px;
   }
 
   img {
@@ -89,14 +92,14 @@ $blockquoteBgColor: #f0fdff;
   }
 
   code {
+    padding: 0.065em 0.4em;
     font-family: $monospace-font;
+    font-size: 0.87em;
+    color: $codeColor;
     word-break: break-word;
-    border-radius: 2px;
     overflow-x: auto;
     background-color: $codeBgColor;
-    color: $codeColor;
-    font-size: 0.87em;
-    padding: 0.065em 0.4em;
+    border-radius: 2px;
   }
 
   pre {
@@ -106,13 +109,13 @@ $blockquoteBgColor: #f0fdff;
     line-height: 1.75;
 
     >code {
-      font-size: 12px;
+      display: block;
       padding: 16px 12px;
       margin: 0;
-      word-break: normal;
-      display: block;
-      overflow-x: auto;
+      font-size: 12px;
       color: #333;
+      word-break: normal;
+      overflow-x: auto;
       background: #f8f8f8;
     }
   }
@@ -242,6 +245,44 @@ $blockquoteBgColor: #f0fdff;
     padding-left: 6px;
   }
 
+  h1::selection,
+  h2::selection,
+  h3::selection,
+  h4::selection,
+  h5::selection,
+  h6::selection {
+    color: $titleBlue;
+  }
+
+  p::selection {
+    color: rgb(200, 0, 0);
+  }
+
+  a::selection,
+  b::selection,
+  strong::selection,
+  i::selection,
+  em::selection,
+  del::selection {
+    background-color: transparent;
+  }
+
+  code::selection {
+    background-color:#ffeaeb;
+  }
+
+  pre {
+    >code::selection {
+      background-color: rgba(160, 200, 255, 0.25);
+    }
+  }
+
+  ol,
+  ul{
+    ::selection{
+      background-color: transparent;
+    }
+  }
 
   @media (max-width: 720px) {
     h1 {
