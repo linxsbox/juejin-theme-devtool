@@ -1,72 +1,82 @@
+@charset "UTF-8";
 .markdown-body {
   word-break: break-word;
   line-height: 1.75;
   font-weight: 400;
   font-size: 14px;
   overflow-x: hidden;
-  color: #555;
+  color: #353535;
 }
 .markdown-body h1 {
   padding-bottom: 4px;
   margin-top: 36px;
   margin-bottom: 10px;
-  line-height: 1.5;
   font-size: 30px;
-  text-shadow: rgba(68, 68, 68, 0.45) 2px 2px 2px;
+  line-height: 1.5;
   color: #005bb7;
 }
 .markdown-body h2 {
+  position: relative;
+  padding-left: 16px;
+  padding-right: 10px;
   padding-bottom: 10px;
   margin-top: 36px;
   margin-bottom: 10px;
-  line-height: 1.5;
   font-size: 24px;
-  text-shadow: rgba(68, 68, 68, 0.45) 2px 2px 2px;
+  line-height: 1.5;
   color: #005bb7;
   border-bottom: 1px solid #ececec;
-  transition: color 2s;
+}
+.markdown-body h2::before {
+  content: "「";
+  position: absolute;
+  top: -6px;
+  left: -10px;
+}
+.markdown-body h2::after {
+  content: "」";
+  position: absolute;
+  top: 6px;
+  right: auto;
 }
 .markdown-body h3 {
+  position: relative;
+  padding-left: 16px;
   padding-bottom: 0;
   margin-top: 36px;
   margin-bottom: 10px;
-  line-height: 1.5;
   font-size: 20px;
-  text-shadow: rgba(68, 68, 68, 0.45) 2px 2px 2px;
+  line-height: 1.5;
   color: #005bb7;
 }
 .markdown-body h4 {
   padding-bottom: 0;
   margin-top: 36px;
   margin-bottom: 10px;
-  line-height: 1.5;
   font-size: 16px;
-  text-shadow: rgba(68, 68, 68, 0.45) 2px 2px 2px;
+  line-height: 1.5;
   color: #005bb7;
 }
 .markdown-body h5 {
   padding-bottom: 0;
   margin-top: 36px;
   margin-bottom: 10px;
-  line-height: 1.5;
   font-size: 14px;
-  text-shadow: rgba(68, 68, 68, 0.45) 2px 2px 2px;
+  line-height: 1.5;
   color: #005bb7;
 }
 .markdown-body h6 {
   padding-bottom: 0;
   margin-top: 6px;
   margin-bottom: 10px;
-  line-height: 1.5;
   font-size: 12px;
-  text-shadow: rgba(68, 68, 68, 0.45) 2px 2px 2px;
+  line-height: 1.5;
   color: #005bb7;
 }
 .markdown-body p {
   line-height: inherit;
   margin-top: 16px;
   margin-bottom: 16px;
-  text-shadow: rgba(175, 175, 175, 0.45) 2px 2px 1px;
 }
 .markdown-body img {
   max-width: 100%;

@@ -4,26 +4,34 @@ Consolas,
 'Courier New',
 monospace;
 $line-space: 16px;
-$baseTxtColor: #353535;
-$titleBlue: #005bb7;
+$baseTxtColor: #cacaca;
+$titleBlue: #fff;
 $strongBlue: #2196f3;
-$codeColor: #c2185b;
-$codeBgColor: #fff4f4;
+$codeColor: #000;
+// $codeBgColor: #fff4f4;
+$codeBgColor: #fe9900;
 $blockquoteBgColor: #f0fdff;
 
 @mixin headTitle($padb: 4px, $fontSize: 24px, $mtop: 36px) {
   padding-bottom: $padb;
   margin-top: $mtop;
   margin-bottom: 10px;
-  font-size: $fontSize;
   line-height: 1.5;
+  font-size: $fontSize;
+}
+
+@mixin headTextShadow {
   color: $titleBlue;
 }
 
 @mixin blockquoteColor {
-  color: #8c8c8c;
-  border-left: 4px solid $strongBlue;
-  background-color: #f0fdff;
+  color: #c7c7c7;
+  border-left: 4px solid $codeBgColor;
+  background-color: rgba(255, 199, 116, 0.1);
+}
+
+.main-area {
+  background-color: #2f2f2f;
 }
 
 .markdown-body {
@@ -33,49 +41,37 @@ $blockquoteBgColor: #f0fdff;
   font-size: 14px;
   overflow-x: hidden;
   color: $baseTxtColor;
+  background-color: #2f2f2f;
 
   h1 {
     @include headTitle(4px, 30px);
+    @include headTextShadow;
   }
 
   h2 {
-    position: relative;
-    padding-left: 16px;
-    padding-right: 10px;
     @include headTitle(10px, 24px);
+    @include headTextShadow;
     border-bottom: 1px solid #ececec;
-
-    &::before {
-      content: '「';
-      position: absolute;
-      top: -6px;
-      left: -10px;
-    }
-
-    &::after {
-      content: '」';
-      position: absolute;
-      top: 6px;
-      right: auto;
-    }
   }
 
   h3 {
-    position: relative;
-    padding-left: 16px;
     @include headTitle(0, 20px);
+    @include headTextShadow;
   }
 
   h4 {
     @include headTitle(0, 16px);
+    @include headTextShadow;
   }
 
   h5 {
     @include headTitle(0, 14px);
+    @include headTextShadow;
   }
 
   h6 {
     @include headTitle(0, 12px, 6px);
+    @include headTextShadow;
   }
 
   p {
@@ -105,7 +101,7 @@ $blockquoteBgColor: #f0fdff;
     word-break: break-word;
     overflow-x: auto;
     background-color: $codeBgColor;
-    border-radius: 2px;
+    border-radius: 4px;
   }
 
   pre {
@@ -119,26 +115,27 @@ $blockquoteBgColor: #f0fdff;
       padding: 16px 12px;
       margin: 0;
       font-size: 12px;
-      color: #333;
+      color: rgb(216, 216, 216);
       word-break: normal;
       overflow-x: auto;
       background: #f8f8f8;
+      background: #000;
     }
   }
 
   a {
     position: relative;
     text-decoration: none;
-    color: #3da8f5;
-    border-bottom: 1px solid #bedcff;
+    color: $codeBgColor;
+    border-bottom: 1px solid rgba(255, 199, 116, 0.5);
 
     &:hover {
-      color: #007fff;
-      border-bottom-color: #007fff;
+      color: $codeBgColor;
+      border-bottom-color: $codeBgColor;
     }
 
     &:active {
-      color: #007fff;
+      color: $codeBgColor;
     }
 
     &::after {
@@ -156,7 +153,7 @@ $blockquoteBgColor: #f0fdff;
     &:hover::after {
       top: 0;
       opacity: 1;
-      border-bottom-color: #007fff;
+      border-bottom-color: $codeBgColor;
     }
   }
 
@@ -211,7 +208,8 @@ $blockquoteBgColor: #f0fdff;
 
   b,
   strong {
-    color: $strongBlue;
+    // color: $strongBlue;
+    color: $codeBgColor;
   }
 
   i,
@@ -251,7 +249,6 @@ $blockquoteBgColor: #f0fdff;
     padding-left: 6px;
   }
 
-  // selection
   h1::selection,
   h2::selection,
   h3::selection,
@@ -259,6 +256,20 @@ $blockquoteBgColor: #f0fdff;
   h5::selection,
   h6::selection {
     color: $titleBlue;
+  }
+
+  h2::before {
+    content: 'P#';
+    padding: 0 6px;
+    margin: 0 4px;
+    color: $codeColor;
+    background-color: $codeBgColor;
+    border-radius: 6px;
+  }
+
+  h2::after {
+    content: attr('#text');
+
   }
 
   p::selection {
@@ -291,7 +302,6 @@ $blockquoteBgColor: #f0fdff;
     }
   }
 
-  // @media
   @media (max-width: 720px) {
     h1 {
       font-size: 24px;
