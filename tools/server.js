@@ -47,7 +47,7 @@ function watchFile(file) {
 
   // 监听编译后的文件变化
   const watcherFile = chokidar.watch([filePath('static/*.css'), filePath('static/template.md')], {});
-  watcherFile.on('change', path => { console.log(222); app.emit('change'); });
+  watcherFile.on('change', path => { app.emit('change'); });
 }
 
 function koaServer(data) {
@@ -63,7 +63,6 @@ function koaServer(data) {
     if (!changing) {
       const dmData = await readMarkdownTemplate();
       data = await parseMarkdown(dmData);
-      console.log(111111);
       socketItem.emit('reload');
       changing = true;
       let st = setTimeout(() => {
