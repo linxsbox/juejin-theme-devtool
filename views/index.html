@@ -19,6 +19,7 @@
 </body>
 <script defer>
   io('ws://localhost:3000').on('reload', () => {
+    console.log(222);
     window.location.reload();
   });
 </script>

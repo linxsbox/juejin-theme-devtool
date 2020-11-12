@@ -61,21 +61,23 @@ $blockquoteBgColor: #f0fdff;
   }
 
   h3 {
-    position: relative;
-    padding-left: 16px;
-    @include headTitle(0, 20px);
+    @include headTitle(0, 20px, 30px);
+    padding-left: 6px;
   }
 
   h4 {
-    @include headTitle(0, 16px);
+    @include headTitle(0, 16px, 24px);
+    padding-left: 6px;
   }
 
   h5 {
-    @include headTitle(0, 14px);
+    @include headTitle(0, 14px, 18px);
+    padding-left: 6px;
   }
 
   h6 {
-    @include headTitle(0, 12px, 6px);
+    @include headTitle(0, 12px, 12px);
+    padding-left: 6px;
   }
 
   p {
@@ -98,9 +100,9 @@ $blockquoteBgColor: #f0fdff;
   }
 
   code {
-    padding: 0.065em 0.4em;
+    padding: .065em .4em;
     font-family: $monospace-font;
-    font-size: 0.87em;
+    font-size: .87em;
     color: $codeColor;
     word-break: break-word;
     overflow-x: auto;
@@ -149,7 +151,7 @@ $blockquoteBgColor: #f0fdff;
       width: 100%;
       opacity: 0;
       border-bottom: 1px solid #bedcff;
-      transition: top 0.3s, opacity .3s;
+      transition: top .3s, opacity .3s;
       transform: translate3d(0, 0, 0);
     }
 
@@ -166,27 +168,35 @@ $blockquoteBgColor: #f0fdff;
     width: auto;
     max-width: 100%;
     overflow: auto;
-    border: solid 1px #f6f6f6;
-  }
+    border: 1px solid #c3e0fd;
+    border-spacing: 0;
+    border-collapse: collapse;
 
-  thead {
-    background: #f6f6f6;
-    color: #000;
-    text-align: left;
-  }
+    thead {
+      color: #000;
+      text-align: left;
+      background: #f6f6f6;
+    }
 
-  tr:nth-child(2n) {
-    background-color: #fcfcfc;
-  }
+    tr:nth-child(2n) {
+      background-color: #f7fbff;
+    }
 
-  th,
-  td {
-    padding: 12px 8px;
-    line-height: 24px;
-  }
+    th,
+    td {
+      padding: 12px 8px;
+      line-height: 24px;
+      border: 1px solid #c3e0fd;
+    }
 
-  td {
-    min-width: 120px;
+    th {
+      color: #005bb7;
+      background-color: #dff0ff;
+    }
+
+    td {
+      min-width: 120px;
+    }
   }
 
   blockquote {
@@ -259,6 +269,7 @@ $blockquoteBgColor: #f0fdff;
   h5::selection,
   h6::selection {
     color: $titleBlue;
+    background-color: rgba(160, 200, 255, .15);
   }
 
   p::selection {
@@ -280,14 +291,14 @@ $blockquoteBgColor: #f0fdff;
 
   pre {
     >code::selection {
-      background-color: rgba(160, 200, 255, 0.25);
+      background-color: rgba(160, 200, 255, .25);
     }
   }
 
   ol,
   ul {
     ::selection {
-      background-color: transparent;
+      background-color: rgba(160, 200, 255, .15);
     }
   }
 

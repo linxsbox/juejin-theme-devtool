@@ -40,38 +40,40 @@
   right: auto;
 }
 .markdown-body h3 {
-  position: relative;
-  padding-left: 16px;
   padding-bottom: 0;
-  margin-top: 36px;
+  margin-top: 30px;
   margin-bottom: 10px;
   font-size: 20px;
   line-height: 1.5;
   color: #005bb7;
+  padding-left: 6px;
 }
 .markdown-body h4 {
   padding-bottom: 0;
-  margin-top: 36px;
+  margin-top: 24px;
   margin-bottom: 10px;
   font-size: 16px;
   line-height: 1.5;
   color: #005bb7;
+  padding-left: 6px;
 }
 .markdown-body h5 {
   padding-bottom: 0;
-  margin-top: 36px;
+  margin-top: 18px;
   margin-bottom: 10px;
   font-size: 14px;
   line-height: 1.5;
   color: #005bb7;
+  padding-left: 6px;
 }
 .markdown-body h6 {
   padding-bottom: 0;
-  margin-top: 6px;
+  margin-top: 12px;
   margin-bottom: 10px;
   font-size: 12px;
   line-height: 1.5;
   color: #005bb7;
+  padding-left: 6px;
 }
 .markdown-body p {
   line-height: inherit;
@@ -150,22 +152,29 @@
   width: auto;
   max-width: 100%;
   overflow: auto;
-  border: solid 1px #f6f6f6;
+  border: 1px solid #c3e0fd;
+  border-spacing: 0;
+  border-collapse: collapse;
 }
-.markdown-body thead {
-  background: #f6f6f6;
+.markdown-body table thead {
   color: #000;
   text-align: left;
+  background: #f6f6f6;
 }
-.markdown-body tr:nth-child(2n) {
-  background-color: #fcfcfc;
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f7fbff;
 }
-.markdown-body th,
-.markdown-body td {
+.markdown-body table th,
+.markdown-body table td {
   padding: 12px 8px;
   line-height: 24px;
+  border: 1px solid #c3e0fd;
 }
-.markdown-body td {
+.markdown-body table th {
+  color: #005bb7;
+  background-color: #dff0ff;
+}
+.markdown-body table td {
   min-width: 120px;
 }
 .markdown-body blockquote {
@@ -231,6 +240,7 @@
 .markdown-body h5::selection,
 .markdown-body h6::selection {
   color: #005bb7;
+  background-color: rgba(160, 200, 255, 0.15);
 }
 .markdown-body p::selection {
   color: #c80000;
@@ -251,7 +261,7 @@
 }
 .markdown-body ol ::selection,
 .markdown-body ul ::selection {
-  background-color: transparent;
+  background-color: rgba(160, 200, 255, 0.15);
 }
 @media (max-width: 720px) {
   .markdown-body h1 {
