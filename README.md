@@ -6,7 +6,9 @@
 ## 使用说明
 此工具为便于开发掘金 markdown 主题，可同步将样式（编译后）应用到到文章上。
 
-clone 此仓库本地，将 **样式文件名** 修改为自己的即可。
+clone 本仓库至本地，将 **样式文件名** 修改为自己定义的主题名称： `juejin.scss` -> `cyanosis.scss`。
+
+最终提交 PR 时应只包含：主题样式文件、LICENSE 和 README.md 三个文件。
 
 ```js
 // index.js
