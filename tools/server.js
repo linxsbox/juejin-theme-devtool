@@ -9,6 +9,12 @@ const child_process = require('child_process');
 const chokidar = require('chokidar');
 const remark = require('remark');
 const remarkHTML = require('remark-html');
+const remargfm = require('remark-gfm');
+const remarkFootnotes = require('remark-footnotes');
+const remarkFrontmatter = require('remark-frontmatter');
+const remarkMath = require('remark-math');
+const remarKatex = require('remark-html-katex');
+
 // const fetch = require('node-fetch');
 const fs = require('fs');
 
@@ -86,10 +92,21 @@ async function readMarkdownTemplate(fetchData) {
 
 async function parseMarkdown(fetchData) {
   return new Promise((resolve, reject) => {
-    remark().use(remarkHTML).process(fetchData, (err, file) => {
-      if (err) { reject(); }
-      resolve(String(file));
-    });
+    remark()
+      .use(remargfm)
+      .use(remarkFootnotes, { inlineNotes: true })
+      .use(remarkFrontmatter, ['yaml', 'toml'])
+      .use(remarkMath)
+      .use(remarKatex)
+      // .use(remark2rehype)
+      // .use(rehypeKatex)
+      // .use(rehypeFormat)
+      // .use(rehypeStringify)
+      .use(remarkHTML)
+      .process(fetchData, (err, file) => {
+        if (err) { reject(); }
+        resolve(String(file));
+      });
   });
 }
 

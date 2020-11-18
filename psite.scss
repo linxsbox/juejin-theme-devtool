@@ -5,12 +5,12 @@ Consolas,
 monospace;
 $line-space: 16px;
 $baseTxtColor: #cacaca;
-$titleBlue: #fff;
-$strongBlue: #2196f3;
+$titleColor: #fff;
+$strongColor: #fe9900;
 $codeColor: #000;
-// $codeBgColor: #fff4f4;
 $codeBgColor: #fe9900;
 $blockquoteBgColor: #f0fdff;
+$aColor: #007fff;
 
 @mixin headTitle($padb: 4px, $fontSize: 24px, $mtop: 36px) {
   padding-bottom: $padb;
@@ -21,13 +21,13 @@ $blockquoteBgColor: #f0fdff;
 }
 
 @mixin headTextShadow {
-  color: $titleBlue;
+  color: $titleColor;
 }
 
 @mixin blockquoteColor {
   color: #c7c7c7;
   border-left: 4px solid $codeBgColor;
-  background-color: rgba(255, 199, 116, 0.1);
+  background-color: rgba(255, 199, 116, .1);
 }
 
 .main-area {
@@ -45,33 +45,43 @@ $blockquoteBgColor: #f0fdff;
 
   h1 {
     @include headTitle(4px, 30px);
-    @include headTextShadow;
   }
 
   h2 {
     @include headTitle(10px, 24px);
-    @include headTextShadow;
     border-bottom: 1px solid #ececec;
+
+    &::before {
+      content: 'P#';
+      padding: 0 6px;
+      margin: 0 4px;
+      color: $codeColor;
+      background-color: $codeBgColor;
+      border-radius: 6px;
+    }
   }
 
   h3 {
-    @include headTitle(0, 20px);
-    @include headTextShadow;
+    position: relative;
+    @include headTitle(0, 20px, 30px);
+
+    &::before {
+      content: '»';
+      padding-right: 6px;
+      color: $strongColor;
+    }
   }
 
   h4 {
-    @include headTitle(0, 16px);
-    @include headTextShadow;
+    @include headTitle(0, 16px, 24px);
   }
 
   h5 {
-    @include headTitle(0, 14px);
-    @include headTextShadow;
+    @include headTitle(0, 14px, 18px);
   }
 
   h6 {
-    @include headTitle(0, 12px, 6px);
-    @include headTextShadow;
+    @include headTitle(0, 12px, 12px);
   }
 
   p {
@@ -85,18 +95,38 @@ $blockquoteBgColor: #f0fdff;
   }
 
   hr {
-    border-top: 1px solid #ddd;
+    position: relative;
+    border-top: 1px solid #b67617;
     border-bottom: none;
     border-left: none;
     border-right: none;
     margin-top: 32px;
     margin-bottom: 32px;
+    overflow: visible;
+    box-sizing: content-box;
+
+    &::after {
+      content: 'juejin.im';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: inline-block;
+      width: 60px;
+      height: 24px;
+      padding: 0 10px;
+      margin: auto;
+      color: $strongColor;
+      text-align: center;
+      background-color: #2f2f2f;
+    }
   }
 
   code {
-    padding: 0.065em 0.4em;
+    padding: .065em .4em;
     font-family: $monospace-font;
-    font-size: 0.87em;
+    font-size: .87em;
     color: $codeColor;
     word-break: break-word;
     overflow-x: auto;
@@ -120,6 +150,20 @@ $blockquoteBgColor: #f0fdff;
       overflow-x: auto;
       background: #f8f8f8;
       background: #000;
+
+      &::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: #6d5736;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $strongColor;
+        border-radius: 10px;
+      }
     }
   }
 
@@ -127,7 +171,7 @@ $blockquoteBgColor: #f0fdff;
     position: relative;
     text-decoration: none;
     color: $codeBgColor;
-    border-bottom: 1px solid rgba(255, 199, 116, 0.5);
+    border-bottom: 1px solid rgba(255, 199, 116, .5);
 
     &:hover {
       color: $codeBgColor;
@@ -145,8 +189,8 @@ $blockquoteBgColor: #f0fdff;
       left: 0;
       width: 100%;
       opacity: 0;
-      border-bottom: 1px solid rgba(255, 199, 116, 0.5);
-      transition: top 0.3s, opacity .3s;
+      border-bottom: 1px solid rgba(255, 199, 116, .5);
+      transition: top .3s, opacity .3s;
       transform: translate3d(0, 0, 0);
     }
 
@@ -163,11 +207,11 @@ $blockquoteBgColor: #f0fdff;
     width: auto;
     max-width: 100%;
     overflow: auto;
-    border: solid 1px #fe9900;
+    border: solid 1px $strongColor;
   }
 
   thead {
-    background: #fe9900;
+    background: $strongColor;
     color: #000;
     font-size: 14px;
     text-align: left;
@@ -175,6 +219,10 @@ $blockquoteBgColor: #f0fdff;
 
   tr:nth-child(2n) {
     background-color: #6d5736;
+  }
+
+  tr:hover {
+    background-color: #947443;
   }
 
   th,
@@ -203,13 +251,13 @@ $blockquoteBgColor: #f0fdff;
 
     &>b,
     &>strong {
-      color: $strongBlue;
+      color: $strongColor;
     }
   }
 
   b,
   strong {
-    // color: $strongBlue;
+    // color: $strongColor;
     color: $codeBgColor;
   }
 
@@ -250,23 +298,22 @@ $blockquoteBgColor: #f0fdff;
     padding-left: 6px;
   }
 
+  // details & summary
+  details {
+    &>summary {}
+
+    &>p {}
+  }
+
+  // selection style
   h1::selection,
   h2::selection,
   h3::selection,
   h4::selection,
   h5::selection,
   h6::selection {
-    color: $titleBlue;
-    background-color: rgba(255, 227, 185, 0.25);
-  }
-
-  h2::before {
-    content: 'P#';
-    padding: 0 6px;
-    margin: 0 4px;
-    color: $codeColor;
-    background-color: $codeBgColor;
-    border-radius: 6px;
+    color: $titleColor;
+    background-color: rgba(255, 227, 185, .25);
   }
 
   p::selection {
@@ -280,11 +327,11 @@ $blockquoteBgColor: #f0fdff;
   em::selection,
   del::selection {
     color: #000;
-    background-color: rgba(254, 152, 0, 0.7);
+    background-color: rgba(254, 152, 0, .7);
   }
 
   code::selection {
-    background-color: rgba(254, 152, 0, 0.7);
+    background-color: rgba(254, 152, 0, .7);
   }
 
   pre {

@@ -21,3 +21,14 @@ html {
 .main-area article {
   padding-top: 2rem;
 }
+
+.math .katex {
+  position: relative;
+}
+
+.math .katex .katex-mathml {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
