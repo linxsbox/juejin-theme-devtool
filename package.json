@@ -1,13 +1,15 @@
 {
-  "name": "juejin-theme",
-  "version": "1.0.0",
+  "name": "juejin-theme-devtool",
+  "version": "0.0.1",
   "author": "",
   "license": "ISC",
-  "description": "掘金 markdown 主题",
+  "description": "掘金 markdown 主题开发工具",
   "main": "index.js",
   "scripts": {
-    "dev": "node index.js",
-    "cp": "node cp.js"
+    "dev": "node index.js"
+  },
+  "bin": {
+    "jjsm": "jjsm.js"
   },
   "repository": {
     "type": "git",

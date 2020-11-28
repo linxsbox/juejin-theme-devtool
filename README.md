@@ -1,43 +1,48 @@
-# juejin-theme
+# juejin-theme-devtool
 掘金 markdown 主题开发工具
 
 如何贡献主题：https://github.com/linxsbox/juejin-markdown-themes
 
 ## 使用说明
-此工具为便于开发掘金 markdown 主题，可同步将样式（编译后）应用到到文章上。
+此工具为便于开发掘金 markdown 主题，可同步将样式（编译后）应用到到文章上预览。
 
-clone 本仓库至本地，将 **样式文件名** 修改为自己定义的主题名称： `juejin.scss` -> `cyanosis.scss`。
+### 1. clone & 启用
 
-最终提交 PR 时应只包含：主题样式文件、LICENSE 和 README.md 三个文件。
-
-```js
-// index.js
-// 参数为样式文件
-run('cyanosis.scss');
-```
-
-启动预览
 ```bash
-npm run dev
+git clone https://github.com/linxsbox/juejin-theme-devtool
+
+cd juejin-theme-devtool
+
+npm install . -g
 ```
 
-## 同步样式文件
-将编写好的样式文件同步到你的主题仓库
+### 2. 开发 & 预览结果
 
-```js
-// 本主题样式文件：cyanosis.scss
-// 样式主题项目目录：可用相对路径和绝对路径，请保留尾部 斜杠/
+进入待开发的主题仓库
 
-copyFile('cyanosis.scss', '../juejin-markdown-theme-cyanosis/');
-```
-
-同步命令
 ```bash
-npm run cp
+# 例：我的掘金主题仓库
+cd juejin-markdown-theme-cyanosis
 ```
 
-## 感谢
-[@youngjuning](https://github.com/youngjuning) | [同步源仓库方案](https://github.com/youngjuning/youngjuning/issues/30)
+使用 `npx jjsm <file>` 启动
+```bash
+# 例：cyanosis.scss 是我的主题文件 
+npx jjsm cyanosis.scss
+
+# 如未指定主题文件，则使用默认的样式渲染。
+# 如有记录，则优先使用上次记录的样式渲染。
+npx jjsm
+```
+
+`注意：第一次启动会有编译时间，约 1~2 秒`
+
+每次编写完成后保存会同步编译并渲染至页面，为减少频繁渲染，在 2 秒内多次变更文件将不会执行渲染操作。
+
+### 3. 清理缓存的样式文件
+```
+npx jjsm clean
+```
 
 ## License
 MIT

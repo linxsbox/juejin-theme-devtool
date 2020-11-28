@@ -23,15 +23,60 @@ const app = new koa();
 const router = new koaRouter();
 
 let socketItem;
+let isDefault = true;
 const filePath = file => path.join(__dirname, `../${file}`);
 
-async function run(file, articleId) {
-  // const fetchData = await fetcthArticleData(articleId);
+let isExisted = async function (filePath) {
+  return new Promise((resolve, reject) => {
+    fs.access(filePath, (err) => {
+      err ? reject(false) : resolve(true);
+    });
+  }).catch(err => err);
+};
+
+let cleanCache = async () => {
+  const cacheFiles = [
+    path.resolve(__dirname, '../static/juejin.css'),
+    path.resolve(__dirname, '../static/juejin.css.map')
+  ];
+  const taskList = cacheFiles.map(item => {
+    return new Promise((resolve, reject) => {
+      fs.unlink(item, (err) => { err ? reject(err) : resolve(true); });
+    });
+  });
+  return Promise.all(taskList)
+    .then(res => {
+      if (res[0] && res[1]) { console.log('缓存记录已清除！'); return true; }
+    })
+    .catch(() => { console.log('没有缓存可清除！'); return false });
+}
+
+async function run(filePath) {
+  let tempFielPath = '';
+  if (filePath.length > 0) {
+    if (filePath[0] === 'clean') {
+      return await cleanCache();
+    }
+    tempFielPath = path.resolve('', filePath[0]);
+    isDefault = false;
+  } else {
+    console.log('Tips:');
+    console.log('  - 未指定样式文件，将以默认样式执行渲染结果！');
+    console.log('  - 命令: \x1B[32mnpx jjsm <file>\x1B[39m\n');
+    tempFielPath = path.resolve(__dirname, '../juejin.scss');
+  }
+
+  if (!isDefault && !await isExisted(tempFielPath)) {
+    console.log('Tips:');
+    console.log('  - 未能读取正确的样式文件，请检查文件名是否正确！');
+    console.log('  - 目前支持 SASS、SCSS 和 CSS');
+    return;
+  }
+
   const dmData = await readMarkdownTemplate();
   const data = await parseMarkdown(dmData);
-  // console.log(data);
 
-  watchFile(file);
+  watchFile(tempFielPath);
   koaServer(data);
 
   const server = http.createServer(app.callback());
@@ -39,20 +84,19 @@ async function run(file, articleId) {
   io.on('connection', socket => { socketItem = socket; });
   // console.dir(server);
 
-  // console.log('请勿短时间内多次启动，掘金 API 接口有访问限制！');
-  // console.log('恶意多次调用掘金 API 接口导致被封 IP 概不负责！');
-  // console.log('为减少频繁渲染，在 2 秒内多次变更文件将不会生效！');
-
-  server.listen(3000, () => { console.log('http://localhost:3000'); });
+  server.listen(3000, () => { console.log('Local: \x1B[96mhttp://localhost:3000\x1B[39m'); });
 }
 
 function watchFile(file) {
+
   // 启用子线程执行 scss 监听
-  const execCmd = `npx sass --watch ./${file}:./static/juejin.css`;
+  const execCmd = `npx sass --watch ${file}:${path.resolve(__dirname, '../static/juejin.css')}`;
+  // console.log(execCmd);
   child_process.exec(execCmd);
 
   // 监听编译后的文件变化
-  const watcherFile = chokidar.watch([filePath('static/*.css'), filePath('static/template.md')], {});
+  // , filePath('static/template.md')
+  const watcherFile = chokidar.watch([filePath('static/*.css')], {});
   watcherFile.on('change', path => { app.emit('change'); });
 }
 
@@ -82,7 +126,7 @@ function koaServer(data) {
   app.use(router.allowedMethods());
 }
 
-async function readMarkdownTemplate(fetchData) {
+async function readMarkdownTemplate() {
   return new Promise((resolve, reject) => {
     fs.readFile(filePath('static/template.md'), (err, data) => {
       data && !err ? resolve(data) : reject(new Error('读取 markdown 文件模板错误！'));
@@ -90,7 +134,7 @@ async function readMarkdownTemplate(fetchData) {
   });
 }
 
-async function parseMarkdown(fetchData) {
+async function parseMarkdown(data) {
   return new Promise((resolve, reject) => {
     remark()
       .use(remargfm)
@@ -98,38 +142,12 @@ async function parseMarkdown(fetchData) {
       .use(remarkFrontmatter, ['yaml', 'toml'])
       .use(remarkMath)
       .use(remarKatex)
-      // .use(remark2rehype)
-      // .use(rehypeKatex)
-      // .use(rehypeFormat)
-      // .use(rehypeStringify)
       .use(remarkHTML)
-      .process(fetchData, (err, file) => {
+      .process(data, (err, file) => {
         if (err) { reject(); }
         resolve(String(file));
       });
   });
 }
 
-module.exports = run;
-
-// async function fetcthArticleData(article_id) {
-//   const req = await fetch('https://apinew.juejin.im/content_api/v1/article/detail', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'access-control-request-headers': 'content-type',
-//       'access-control-request-method': 'POST',
-//       'cache-control': 'no-cache',
-//       pragma: 'no-cache',
-//       origin: 'https://juejin.im',
-//       referer: 'https://juejin.im/',
-//     },
-//     body: JSON.stringify({
-//       article_id
-//     })
-//   });
-
-//   const jsonData = await req.json();
-//   const pageData = jsonData?.data?.article_info;
-//   return pageData?.content || pageData?.mark_content;
-// }
+module.exports.run = run;
