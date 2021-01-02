@@ -1,7 +1,7 @@
 {
   "name": "juejin-theme-devtool",
   "version": "0.0.1",
-  "author": "",
+  "author": "Lin.xs",
   "license": "ISC",
   "description": "掘金 markdown 主题开发工具",
   "main": "index.js",
