@@ -1,12 +1,12 @@
 {
   "name": "juejin-theme-devtool",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Lin.xs",
   "license": "ISC",
   "description": "掘金 markdown 主题开发工具",
-  "main": "index.js",
+  "main": "jjsm.js",
   "scripts": {
-    "dev": "node index.js"
+    "dev": "node jjsm.js"
   },
   "bin": {
     "jjsm": "jjsm.js"

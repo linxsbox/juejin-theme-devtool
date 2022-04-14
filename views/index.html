@@ -16,11 +16,25 @@
       <%-data%>
     </article>
   </div>
+  <div class="change-style">
+    光亮模式
+  </div>
 </body>
 <script defer>
   io('ws://localhost:3000').on('reload', () => {
     window.location.reload();
   });
+
+  const elRoot = document.querySelector('html');
+  const csel = document.querySelector('.change-style');
+
+  let isDark = false;
+  const chageElClass = () => {
+    isDark = !isDark;
+    elRoot.classList.toggle('__dark', isDark);
+    csel.innerText = isDark ? "深色模式" : "光亮模式";
+  };
+  csel.addEventListener('click', chageElClass);
 </script>
 
 </html>

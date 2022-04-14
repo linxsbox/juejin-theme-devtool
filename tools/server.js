@@ -92,7 +92,11 @@ function watchFile(file) {
   // 启用子线程执行 scss 监听
   const execCmd = `npx sass --watch ${file}:${path.resolve(__dirname, '../static/juejin.css')}`;
   // console.log(execCmd);
-  child_process.exec(execCmd);
+  child_process.exec(execCmd, (cperr, stdout, stderr) => {
+    console.error('[Error] ', cperr);
+    console.log('[Error] stdout info: ', stdout);
+    console.log('[Error] stderr info: ', stderr);
+  });
 
   // 监听编译后的文件变化
   // , filePath('static/template.md')
@@ -113,6 +117,8 @@ function koaServer(data) {
     if (!changing) {
       const dmData = await readMarkdownTemplate();
       data = await parseMarkdown(dmData);
+
+      if (!socketItem) return
       socketItem.emit('reload');
       changing = true;
       let st = setTimeout(() => {
