@@ -9,17 +9,24 @@ html {
 
 .main-area {
   position: relative;
-  width: 700px;
+  width: 820px;
   max-width: 100%;
-  padding: 0 2rem;
   margin: auto;
-  background-color: #fff;
-  border-radius: 2px;
   box-sizing: border-box;
 }
 
-.main-area article {
-  padding-top: 2rem;
+.main-area > * {
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+.main-area .article {
+  position: relative;
+  padding: 32px;
+  z-index: 1;
+}
+
+.main-area .article .article-content {
 }
 
 .math .katex {
@@ -42,4 +49,5 @@ html {
   border: 1px solid;
   border-radius: 6px;
   cursor: pointer;
+  z-index: 9999;
 }
