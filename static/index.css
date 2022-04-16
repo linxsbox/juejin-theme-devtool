@@ -40,14 +40,40 @@ html {
   overflow: hidden;
 }
 
-.change-style {
+/* 模式按钮切换样式 */
+.switch-mode {
   position: fixed;
   top: 10px;
   right: 10px;
+  z-index: 9999;
+}
+
+.switch-mode .toggle-mode-btn {
+  display: block;
   padding: 4px 6px;
-  background: #fff;
-  border: 1px solid;
+  background-color: #fff;
+  border: 1px solid #000;
   border-radius: 6px;
   cursor: pointer;
-  z-index: 9999;
+}
+
+.switch-mode .toggle-mode-btn::before {
+  content: '深色模式';
+}
+
+.switch-mode .toggle-mode:checked + .toggle-mode-btn::before {
+  content: '光亮模式';
+}
+
+/* 深色模式 */
+html.__dark {
+  color-scheme: dark;
+}
+
+.__dark {
+  background-color: #111;
+}
+
+.__dark .main-area > * {
+  background-color: #2f2f2f;
 }

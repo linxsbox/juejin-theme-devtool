@@ -22,8 +22,9 @@
       </div>
     </article>
   </div>
-  <div class="change-style">
-    光亮模式
+  <div class="switch-mode">
+    <input type="checkbox" id="toggle-mode" class="toggle-mode" hidden />
+    <label class="toggle-mode-btn" for="toggle-mode"></label>
   </div>
 </body>
 <script defer>
@@ -31,16 +32,28 @@
     window.location.reload();
   });
 
-  const elRoot = document.querySelector('html');
-  const csel = document.querySelector('.change-style');
+  const htmlEL = document.querySelector('html');
+  const mdBody = document.querySelector('.markdown-body');
+  const toggleMode = document.querySelector('.toggle-mode');
 
-  let isDark = false;
-  const chageElClass = () => {
-    isDark = !isDark;
-    elRoot.classList.toggle('__dark', isDark);
-    csel.innerText = isDark ? "深色模式" : "光亮模式";
-  };
-  csel.addEventListener('click', chageElClass);
+  const isDark = window.sessionStorage.getItem('switch-mode');
+  
+  if (!isDark) {
+    window.sessionStorage.setItem('switch-mode', toggleMode.checked);
+    console.log('深色模式为 juejin-theme-devtool 作者私有实现，非官方支持！');
+    console.log('深色模式切换的 chrome 插件目前正在开发中……');
+  } else {
+    const status = isDark === 'true' ? true : false;
+    htmlEL.classList.toggle('__dark', status);
+    mdBody.classList.toggle('__dark', status);
+    window.sessionStorage.setItem('switch-mode', status);
+  }
+
+  toggleMode.addEventListener('change', () => {
+    htmlEL.classList.toggle('__dark', toggleMode.checked);
+    mdBody.classList.toggle('__dark', toggleMode.checked);
+    window.sessionStorage.setItem('switch-mode', toggleMode.checked);
+  });
 </script>
 
 </html>
