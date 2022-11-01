@@ -1,0 +1,11 @@
+@mixin theme($name: "") {
+  @if $name == "" {
+    body {
+      @content;
+    }
+  } @else {
+    body[data-theme="#{$name}"] {
+      @content;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+@include theme {
+  // 内容层_文字
+  --juejin-font-1: #252933;
+  --juejin-font-2: #515767;
+  --juejin-font-3: #8a919f;
+  --juejin-font-4: #c2c8d1;
+  --juejin-font-brand1-normal: #1e80ff;
+  --juejin-font-brand2-hover: #1171ee;
+  --juejin-font-brand3-click: #0060dd;
+  --juejin-font-brand4-disable: #abcdff;
+  --juejin-font-success: #2bb91b;
+  --juejin-font-warning: #ff8412;
+  --juejin-font-danger: #ff5132;
+  --juejin-font-white-disable: #fff;
+  --juejin-font-white: #fff;
+  // 内容层_图层
+  --juejin-background: #f2f3f5;
+  --juejin-gray-1-1: #e4e6eb;
+  --juejin-gray-1-2: rgba(228, 230, 235, 0.5);
+  --juejin-layer-1: #fff;
+  --juejin-layer-2-1: #f7f8fa;
+  --juejin-layer-2-2: rgba(247, 248, 250, 0.7);
+  --juejin-layer-2-plugin: rgba(247, 248, 250, 0.5);
+  --juejin-layer-3-fill: #f2f3f5;
+  --juejin-brand-1-normal: #1e80ff;
+  --juejin-brand-2-hover: #1171ee;
+  --juejin-brand-3-click: #0060dd;
+  --juejin-brand-4-disable: #abcdff;
+  --juejin-brand-5-light: #eaf2ff;
+  --juejin-danger-3-light: #fff2ff;
+}

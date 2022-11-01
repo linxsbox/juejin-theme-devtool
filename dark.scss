@@ -1,0 +1,32 @@
+@include theme("dark") {
+  // 内容层_文字
+  --juejin-font-1: rgba(255, 255, 255, 0.9);
+  --juejin-font-2: rgba(255, 255, 255, 0.7);
+  --juejin-font-3: rgba(255, 255, 255, 0.55);
+  --juejin-font-4: rgba(255, 255, 255, 0.45);
+  --juejin-font-brand1-normal: #4495ff;
+  --juejin-font-brand2-hover: #2b88ff;
+  --juejin-font-brand3-click: #1371ec;
+  --juejin-font-brand4-disable: rgba(19, 113, 236, 0.4);
+  --juejin-font-success: #40c17b;
+  --juejin-font-warning: #ff8541;
+  --juejin-font-danger: #c62633;
+  --juejin-font-white-disable: rgba(255, 255, 255, 0.6);
+  --juejin-font-white: #fff;
+  // 内容层_图层
+  --juejin-background: #000;
+  --juejin-gray-1-1: rgba(255, 255, 255, 0.2);
+  --juejin-gray-1-2: rgba(255, 255, 255, 0.1);
+  --juejin-layer-1: #181818;
+  --juejin-layer-2-1: rgba(255, 255, 255, 0.08);
+  --juejin-layer-2-2: rgba(255, 255, 255, 0.08);
+  --juejin-layer-2-plugin: rgba(255, 255, 255, 0.04);
+  --juejin-layer-3-fill: rgba(255, 255, 255, 0.08);
+  --juejin-layer-3-border: rgba(255, 255, 255, 0.2);
+  --juejin-brand-1-normal: #2986ff;
+  --juejin-brand-2-hover: #1473ed;
+  --juejin-brand-3-click: #0563dd;
+  --juejin-brand-4-disable: rgba(41, 134, 255, 0.4);
+  --juejin-brand-5-light: rgba(30, 128, 255, 0.2);
+  --juejin-danger-3-light: rgba(248, 89, 89, 0.2);
+}
