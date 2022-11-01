@@ -1,59 +1,56 @@
 <!DOCTYPE html>
 <html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./juejin.css" />
+    <title>预览 掘金 markdown 主题</title>
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./index.css">
-  <link rel="stylesheet" href="./juejin.css">
-  <title>预览 掘金 markdown 主题</title>
-  <script src="/socket.io/socket.io.js"></script>
-</head>
-
-<body>
-  <div class="main-area article-area">
-    <article class="article">
-      <div class="article-content">
-        <div class="main-area">
-          <article class="markdown-body">
-            <%-data%>
-          </article>
+  <body>
+    <div class="main-area article-area">
+      <article class="article">
+        <div class="article-content">
+          <div class="main-area">
+            <article class="markdown-body"><%-data%></article>
+          </div>
         </div>
-      </div>
-    </article>
-  </div>
-  <div class="switch-mode">
-    <input type="checkbox" id="toggle-mode" class="toggle-mode" hidden />
-    <label class="toggle-mode-btn" for="toggle-mode"></label>
-  </div>
-</body>
-<script defer>
-  io('ws://localhost:3000').on('reload', () => {
-    window.location.reload();
-  });
+      </article>
+    </div>
+    <div class="switch-mode">
+      <input type="checkbox" id="toggle-mode" class="toggle-mode" hidden />
+      <label class="toggle-mode-btn" for="toggle-mode"></label>
+    </div>
+  </body>
+  <script defer>
+    io("ws://localhost:3000").on("reload", () => {
+      window.location.reload();
+    });
 
-  const htmlEL = document.querySelector('html');
-  const mdBody = document.querySelector('.markdown-body');
-  const toggleMode = document.querySelector('.toggle-mode');
+    const htmlEL = document.querySelector("html");
+    const mdBody = document.querySelector(".markdown-body");
+    const toggleMode = document.querySelector(".toggle-mode");
 
-  const isDark = window.sessionStorage.getItem('switch-mode');
-  
-  if (!isDark) {
-    window.sessionStorage.setItem('switch-mode', toggleMode.checked);
-    console.log('深色模式为 juejin-theme-devtool 作者私有实现，非官方支持！');
-    console.log('深色模式切换的 chrome 插件目前正在开发中……');
-  } else {
-    const status = isDark === 'true' ? true : false;
-    htmlEL.classList.toggle('__dark', status);
-    mdBody.classList.toggle('__dark', status);
-    window.sessionStorage.setItem('switch-mode', status);
-  }
+    const isDark = window.sessionStorage.getItem("switch-mode");
 
-  toggleMode.addEventListener('change', () => {
-    htmlEL.classList.toggle('__dark', toggleMode.checked);
-    mdBody.classList.toggle('__dark', toggleMode.checked);
-    window.sessionStorage.setItem('switch-mode', toggleMode.checked);
-  });
-</script>
+    if (!isDark) {
+      window.sessionStorage.setItem("switch-mode", toggleMode.checked);
+      console.log("深色模式为 juejin-theme-devtool 作者私有实现，非官方支持！");
+      console.log("深色模式切换的 chrome 插件目前正在开发中……");
+    } else {
+      const status = isDark === "true" ? true : false;
+      // htmlEL.classList.toggle('__dark', status);
+      // mdBody.classList.toggle('__dark', status);
+      window.sessionStorage.setItem("switch-mode", status);
+    }
 
+    toggleMode.addEventListener("change", () => {
+      document.body.setAttribute("data-theme", toggleMode.checked ? 'dark' : 'light');
+      // htmlEL.classList.toggle('__dark', toggleMode.checked);
+      // mdBody.classList.toggle('__dark', toggleMode.checked);
+      window.sessionStorage.setItem("switch-mode", toggleMode.checked);
+    });
+  </script>
 </html>
